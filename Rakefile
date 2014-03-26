@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "zebra_printer"
   gem.homepage = "http://github.com/yatsura/zebra_printer"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Zebra printer DSL}
+  gem.description = %Q{This DSL is for zebra printers and support languages ZPLII and EPLII}
   gem.email = "paul.d.mitchell@ed.ac.uk"
   gem.authors = ["Paul Mitchell"]
   # dependencies defined in Gemfile
