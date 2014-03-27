@@ -1,3 +1,4 @@
+
 require 'simplecov'
 
 module SimpleCov::Configuration
@@ -8,7 +9,7 @@ end
 
 SimpleCov.configure do
   clean_filters
-  load_adapter 'test_frameworks'
+  load_profile 'test_frameworks'
 end
 
 ENV["COVERAGE"] && SimpleCov.start do
