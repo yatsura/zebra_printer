@@ -16,7 +16,7 @@ Feature: Simple ASCII text
     end
     """
     When I execute the DSL
-    Then the output should include "A1,0,0,1,1,1,N,"""
+    Then the output should include "A1,0,0,2,1,1,N,"""
     
   Scenario: Basic text only DSL for ZPL2
     Given I have a printer than understands "ZPL2"

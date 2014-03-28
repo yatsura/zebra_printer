@@ -16,7 +16,7 @@ Feature: Rotation of ASCII text
     end
     """
     When I execute the DSL
-    Then the output should include "A1,0,1,1,1,1,N,"""
+    Then the output should include "A1,0,1,2,1,1,N,"""
 
   Scenario: Rotate text 90 degrees for ZPL2
     Given I have a printer than understands "ZPL2"
@@ -44,6 +44,7 @@ Feature: Rotation of ASCII text
       end
     end
     a.process(&label)
+    a.document
     """
     When I execute the code
     Then the output should be like "\^A[A-Z]R,\d+,\d+"

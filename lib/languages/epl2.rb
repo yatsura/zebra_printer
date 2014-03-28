@@ -3,10 +3,11 @@ module Languages
     def initialize
       @document = document_start
       #defaults
-      @rotation = 0 
+      @rotation = 0
+      @font_size = 2
     end
     def text(x,y,text,opts={})
-      @document.concat "A#{x},#{y},#{@rotation},1,1,1,N,\"#{text}\"\n"
+      @document.concat "A#{x},#{y},#{@rotation},#{@font_size},1,1,N,\"#{text}\"\n"
     end
 
     def document_start
@@ -34,6 +35,36 @@ module Languages
                   end
       self.instance_eval(&block)
       @rotation = temp_rot
+    end
+
+    def font(opts={},&block)
+      if opts.include? :size
+        font_size opts[:size]
+      end
+      if block_given?
+        save = @font_size
+        self.instance_eval(&block)
+        @font_size = save
+      end
+    end
+
+    def font_size(size)
+      @font_size = case(size)
+                   when :normal
+                     2
+                   when :small
+                     1
+                   when :large
+                     3
+                   when :x_large
+                     4
+                   else
+                     2
+                   end
+    end
+
+    def reset_font
+      @document.concat("^A#{@font_name}#{@font_orientation},#{@char_height},#{@char_width}\n")
     end
   end
 end
