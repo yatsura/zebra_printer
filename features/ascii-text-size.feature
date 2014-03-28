@@ -18,6 +18,7 @@ Feature: ASCII Text Size
     When I execute the DSL
     Then the output should be like "A\d,\d,\d,2,\d,\d,[A-Z]"
 
+  @pdm
   Scenario: Normal Text on ZPL2
     Given I have a printer than understands "ZPL2"
     And a DSL with:

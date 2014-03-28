@@ -7,7 +7,7 @@ module Languages
         @font_rotation = opts.include?(:rotation) ? font_rotation(opts[:rotation]) : font_rotation(:by_0)
         @char_height   = opts[:height] || 15
         @char_width    = opts[:width] || 12
-        @font_name, @char_height, @char_width = font_size(opts(:size)) if opts.include?(:size)
+        @font_name, @char_height, @char_width = font_size(opts[:size]) if opts.include?(:size)
       end
 
       def font_args(opts={})

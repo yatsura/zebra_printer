@@ -2,6 +2,7 @@ require_relative 'zpl2/font'
 require_relative 'zpl2/document'
 require_relative 'zpl2/text'
 require_relative 'zpl2/position'
+
 module Languages
   class Zpl2
     def initialize
@@ -27,14 +28,11 @@ module Languages
 
     def font(opts={},&block)
       if block_given?
-        new_font = Zpl2::Font.new
-        new_font.font_args opts
-        @document << new_font
+        @document << Zpl2::Font.new(opts)
         self.instance_eval &block
         @document << @font
       else
-        @font = Zpl2::Font.new
-        @font.font_args opts
+        @font = Zpl2::Font.new(opts)
         @document << @font
       end
     end
