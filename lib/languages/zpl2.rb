@@ -1,66 +1,46 @@
+require_relative 'zpl2/font'
+require_relative 'zpl2/document'
+require_relative 'zpl2/text'
+require_relative 'zpl2/position'
 module Languages
   class Zpl2
     def initialize
-      @document = document_start
-
-      # defaults
-      @font_name = "A"
-      @font_orientation = "N"
-      @char_height = 32
-      @char_width = 32
+      @document = Zpl2::Document.new
+      @font = Zpl2::Font.new
     end
-    # TODO Escape seqs
+    
     def text(x,y,text,opts={})
-      origin x,y
-      @document.concat "^FD#{text}^FS\n"
+      @document << Zpl2::Position.new(x,y)
+      @document << Zpl2::Text.new(text)
     end
 
     def rotate(amount, &block)
-      temp_rot = @font_orientation
-      @font_orientation = case(amount)
-                          when :by_90
-                            "R"
-                          when :by_180
-                            "I"
-                          when :by_270
-                            "B"
-                          else
-                            "N"
-                          end
-      reset_font
-      self.instance_eval(&block)
-      @font_orientation = temp_rot
-      reset_font
-    end
-
-    def font(name,orientation,height,width,&block)
-      @document.concat("^A#{name}#{orientation},#{height},#{width}\n")
-      if block_given?        
-        self.instance_eval(&block)
-        reset_font
+      if block_given?
+        @document << Zpl2::Font.new(:rotation => amount)
+        self.instance_eval &block
+        @document << @font
       else
-        @font_name, @font_orientation, @char_height, @char_width = name, orientation, height, width
+        @font.font_rotation amount
+        @document << @font
       end
     end
 
-    def reset_font
-      @document.concat("^A#{@font_name}#{@font_orientation},#{@char_height},#{@char_width}\n")
+    def font(opts={},&block)
+      if block_given?
+        new_font = Zpl2::Font.new
+        new_font.font_args opts
+        @document << new_font
+        self.instance_eval &block
+        @document << @font
+      else
+        @font = Zpl2::Font.new
+        @font.font_args opts
+        @document << @font
+      end
     end
     
-    def document_start
-      "^XA\n"
-    end
-
-    def document_end
-      "^XZ\n"
-    end
-
     def document
-      @document.concat(document_end)
-    end
-    private
-    def origin(x,y)
-      @document.concat "^FO#{x},#{y}\n"
+        @document.render
     end
   end
 end
