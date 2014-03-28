@@ -38,7 +38,7 @@ module Languages
     end
     
     def document
-        @document.render
+      @document.render
     end
   end
 end
