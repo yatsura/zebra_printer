@@ -2,6 +2,7 @@ require_relative 'zpl2/font'
 require_relative 'zpl2/document'
 require_relative 'zpl2/text'
 require_relative 'zpl2/position'
+require_relative 'zpl2/barcode'
 
 module Languages
   class Zpl2
@@ -36,7 +37,18 @@ module Languages
         @document << @font
       end
     end
-    
+
+    def barcode(*args)
+      opts = args.extract_options!
+      code,text = args.pop 2
+      b = Zpl2::Barcode.new @font, code,opts
+      if opts.include? :at
+        x,y = opts[:at].pop 2
+        @document << Zpl2::Position.new(x,y)
+      end
+      @document << b.render(text)
+    end
+
     def document
       @document.render
     end

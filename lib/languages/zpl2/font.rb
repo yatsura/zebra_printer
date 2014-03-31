@@ -1,17 +1,19 @@
 module Languages
   class Zpl2
     class Font
+      attr_reader :name, :rotation, :height, :width
+      
       def initialize(opts = {})
         # defaults
-        @font_name     = opts[:name] || "B"
-        @font_rotation = opts.include?(:rotation) ? font_rotation(opts[:rotation]) : font_rotation(:by_0)
-        @char_height   = opts[:height] || 15
-        @char_width    = opts[:width] || 12
-        @font_name, @char_height, @char_width = font_size(opts[:size]) if opts.include?(:size)
+        @name     = opts[:name] || "B"
+        @rotation = opts.include?(:rotation) ? font_rotation(opts[:rotation]) : font_rotation(:by_0)
+        @height   = opts[:height] || 15
+        @width    = opts[:width] || 12
+        @name, @height, @width = font_size(opts[:size]) if opts.include?(:size)
       end
 
       def font_args(opts={})
-        @font_name = font_size(opts[:size]) if opts.include? :size
+        @name = font_size(opts[:size]) if opts.include? :size
       end
 
       def font_size(val)
@@ -30,7 +32,7 @@ module Languages
       end
 
       def font_rotation(amount)
-      @font_rotation = case(amount)
+      @rotation = case(amount)
                           when :by_90
                             "R"
                           when :by_180
@@ -42,7 +44,7 @@ module Languages
                           end        
       end
       def render
-        "^A#{@font_name}#{@font_rotation},#{@char_height},#{@char_width}\n"
+        "^A#{@name}#{@rotation},#{@height},#{@width}\n"
       end
     end
   end
