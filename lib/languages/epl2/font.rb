@@ -5,7 +5,7 @@ module Languages
       
       def initialize(opts = {})
         # defaults
-        @name     = opts[:name] || "1"
+        @name     = opts[:name] || "2"
         @rotation = opts.include?(:rotation) ? font_rotation(opts[:rotation]) : font_rotation(:by_0)
         @height   = opts[:height] || 1
         @width    = opts[:width] || 1
@@ -30,13 +30,13 @@ module Languages
       def font_rotation(amount)
       @rotation = case(amount)
                           when :by_90
-                            "2"
-                          when :by_180
-                            "3"
-                          when :by_270
-                            "4"
-                          else
                             "1"
+                          when :by_180
+                            "2"
+                          when :by_270
+                            "3"
+                          else
+                            "0"
                           end        
       end
       def render

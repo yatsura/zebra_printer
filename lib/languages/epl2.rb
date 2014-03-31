@@ -1,70 +1,45 @@
+require_relative 'epl2/font'
+require_relative 'epl2/document'
+require_relative 'epl2/text'
+require_relative 'epl2/position'
+
 module Languages
   class Epl2
     def initialize
-      @document = document_start
+      @document = Epl2::Document.new
       #defaults
       @rotation = 0
-      @font_size = 2
+      @font = Epl2::Font.new
     end
     def text(x,y,text,opts={})
-      @document.concat "A#{x},#{y},#{@rotation},#{@font_size},1,1,N,\"#{text}\"\n"
-    end
-
-    def document_start
-      "N\n"
-    end
-
-    def document_end
-      "P1\n"
+      @document << Epl2::Text.new(@font).render(x,y,text)
     end
 
     def document
-      @document.concat document_end
+      @document.render
     end
+    
     def rotate(amount,&block)
-      temp_rot = @rotation
-      @rotation = case(amount)
-                  when :by_90
-                    1
-                  when :by_180
-                    2
-                  when :by_270
-                    3
-                  else
-                    0
-                  end
-      self.instance_eval(&block)
-      @rotation = temp_rot
+      if block_given?
+        save = @font
+        @font.font_rotation amount
+        self.instance_eval(&block)
+        @font = save
+      else
+        @font.font_rotation amount
+      end
     end
 
     def font(opts={},&block)
       if opts.include? :size
-        font_size opts[:size]
+        @font = Epl2::Font.new(opts)
       end
       if block_given?
-        save = @font_size
+        save = @font
+        @font = Epl2::Font.new(opts)
         self.instance_eval(&block)
-        @font_size = save
+        @font = save
       end
-    end
-
-    def font_size(size)
-      @font_size = case(size)
-                   when :normal
-                     2
-                   when :small
-                     1
-                   when :large
-                     3
-                   when :x_large
-                     4
-                   else
-                     2
-                   end
-    end
-
-    def reset_font
-      @document.concat("^A#{@font_name}#{@font_orientation},#{@char_height},#{@char_width}\n")
     end
   end
 end
