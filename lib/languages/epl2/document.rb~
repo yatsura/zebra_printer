@@ -1,6 +1,0 @@
-module Languages
-  class Epl2
-    class Document
-    end
-  end
-end

@@ -1,6 +1,0 @@
-module Languages
-  class Epl2
-    class Font
-    end
-  end
-end
