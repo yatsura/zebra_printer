@@ -2,13 +2,14 @@ require_relative 'epl2/font'
 require_relative 'epl2/document'
 require_relative 'epl2/text'
 require_relative 'epl2/position'
+require_relative 'epl2/barcode'
+require_relative '../utils/array'
 
 module Languages
   class Epl2
     def initialize
       @document = Epl2::Document.new
       #defaults
-      @rotation = 0
       @font = Epl2::Font.new
     end
     def text(x,y,text,opts={})
@@ -40,6 +41,15 @@ module Languages
         self.instance_eval(&block)
         @font = save
       end
+    end
+
+    def barcode(*args)
+      opts = args.extract_options!
+      code,text = args.pop 2
+      b = Epl2::Barcode.new @font,code,opts
+      x, y = 0
+      x, y = opts[:at].pop(2) if opts.include?(:at)
+      @document << b.render(x,y,text)
     end
   end
 end
