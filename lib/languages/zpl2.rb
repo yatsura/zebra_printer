@@ -41,7 +41,7 @@ module Languages
     def barcode(*args)
       opts = args.extract_options!
       code,text = args.pop 2
-      b = Zpl2::Barcode.new @font, code,opts
+      b = Zpl2::BarcodeFactory.create_barcode @font, code,opts
       if opts.include? :at
         x,y = opts[:at].pop 2
         @document << Zpl2::Position.new(x,y)
