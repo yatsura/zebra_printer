@@ -46,7 +46,7 @@ module Languages
     def barcode(*args)
       opts = args.extract_options!
       code,text = args.pop 2
-      b = Epl2::Barcode.new @font,code,opts
+      b = Epl2::BarcodeFactory.create_barcode @font,code,opts
       x, y = 0
       x, y = opts[:at].pop(2) if opts.include?(:at)
       @document << b.render(x,y,text)
