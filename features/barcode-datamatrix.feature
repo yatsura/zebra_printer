@@ -41,7 +41,7 @@ Feature: Data matrix barcode
     end
     """
     When I execute the DSL
-    Then the output should include "^BXN,1,200,16,16"
+    Then the output should include "^BXN,4,200,16,16"
     And the output should include "^FDhello^FS"
     And the output should include "^FO1,2"
     
@@ -57,6 +57,6 @@ Feature: Data matrix barcode
     end
     """
     When I execute the DSL
-    Then the output should include "^BXN,1,200,16,16"
+    Then the output should include "^BXN,4,200,16,16"
     And the output should include "^FDhello^FS"
     And the output should include "^FO15,15"
