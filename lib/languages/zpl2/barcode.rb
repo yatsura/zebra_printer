@@ -30,7 +30,7 @@ module Languages
 
     class Barcode2D
       BarcodeClasses = {
-                        data_matrix: ["X",1,16,16]
+                        data_matrix: ["X",4,16,16]
                        }
 
       def initialize(font, code_type, opts = {})
