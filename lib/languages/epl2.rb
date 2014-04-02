@@ -3,6 +3,7 @@ require_relative 'epl2/document'
 require_relative 'epl2/text'
 require_relative 'epl2/position'
 require_relative 'epl2/barcode'
+require_relative 'epl2/position'
 require_relative '../utils/array'
 
 module Languages
@@ -11,15 +12,17 @@ module Languages
       @document = Epl2::Document.new
       #defaults
       @font = Epl2::Font.new
-    end
-    def text(x,y,text,opts={})
-      @document << Epl2::Text.new(@font).render(x,y,text)
+      @position = Epl2::Position.new(0,0)
     end
 
     def document
       @document.render
     end
-    
+
+    def text(text,opts={})
+      @document << Epl2::Text.new(@font).render(@position.x,@position.y,text)
+    end
+
     def rotate(amount,&block)
       if block_given?
         save = @font
@@ -50,6 +53,17 @@ module Languages
       x, y = 0
       x, y = opts[:at].pop(2) if opts.include?(:at)
       @document << b.render(x,y,text)
+    end
+
+    def position(x,y,&block)
+      if block_given?
+        save = @position
+        @position = Epl2::Position.new x,y
+        self.instance_eval(&block)
+        @position = save
+      else
+        @position = Epl2::Position.new x,y
+      end
     end
   end
 end
