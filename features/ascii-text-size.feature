@@ -15,7 +15,7 @@ Feature: ASCII Text Size
     end
     """
     When I execute the DSL
-    Then the output should be like "A\d,\d,\d,2,\d,\d,[A-Z]"
+    Then the output should be like "A\d,\d,\d,2,3,3,[A-Z]"
 
   Scenario: Normal Text on ZPL2
     Given a DSL with:
@@ -28,4 +28,4 @@ Feature: ASCII Text Size
     end
     """
     When I execute the DSL
-    Then the output should be like "\^ABN"
+    Then the output should be like "\^CF0N"

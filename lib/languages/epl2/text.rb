@@ -6,7 +6,7 @@ module Languages
       end
       
       def render(x,y,text)
-        "A#{x},#{y},#{@font.rotation},#{@font.name},1,1,N,\"#{text}\""
+        "A#{x},#{y},#{@font.rotation},#{@font.name},#{@font.height},#{@font.width},N,\"#{text}\""
       end
     end
   end

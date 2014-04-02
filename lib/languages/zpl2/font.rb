@@ -10,6 +10,7 @@ module Languages
         @height   = opts[:height] || 15
         @width    = opts[:width] || 12
         @name, @height, @width = font_size(opts[:size]) if opts.include?(:size)
+        @code = "^CF"
       end
 
       def font_args(opts={})
@@ -19,15 +20,15 @@ module Languages
       def font_size(val)
         case val
         when :normal
-          ["B",15,12]
+          ["0",25,25]
         when :small
-          ["A",15,12]
+          ["0",20,20]
         when :large
-          ["D",15,12]
+          ["0",40,40]
         when :x_large
-          ["E",15,12]
+          ["0",60,60]
         else
-          ["B",15,12]
+          ["0",25,25]
         end
       end
 
@@ -44,7 +45,7 @@ module Languages
                           end        
       end
       def render
-        "^A#{@name}#{@rotation},#{@height},#{@width}\n"
+        "^CF#{@name}#{@rotation},#{@height},#{@width}\n"
       end
     end
   end

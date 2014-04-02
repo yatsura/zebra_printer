@@ -15,15 +15,15 @@ module Languages
       def font_size(val)
         case val
         when :normal
-          ["2",1,1]
+          ["2",3,3]
         when :small
-          ["1",1,1]
+          ["2",2,2]
         when :large
-          ["3",1,1]
+          ["2",4,4]
         when :x_large
-          ["4",1,1]
+          ["2",6,6]
         else
-          ["2",1,1]
+          ["2",3,3]
         end
       end
 
