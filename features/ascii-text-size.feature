@@ -17,6 +17,19 @@ Feature: ASCII Text Size
     When I execute the DSL
     Then the output should be like "A\d,\d,\d,2,3,3,[A-Z]"
 
+  Scenario: Normal Text on EPL2
+    Given a DSL with:
+    """ruby
+    ZebraPrinterDocument.new do
+      language :epl2
+      font(:size => :large) do
+        text ''
+      end
+    end
+    """
+    When I execute the DSL
+    Then the output should be like "A\d,\d,\d,2,4,4,[A-Z]"
+
   Scenario: Normal Text on ZPL2
     Given a DSL with:
     """ruby
