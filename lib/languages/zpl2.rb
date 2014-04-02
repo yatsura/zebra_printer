@@ -49,7 +49,7 @@ module Languages
       b = Zpl2::BarcodeFactory.create_barcode @font, code,opts
       if opts.include? :at
         x,y = opts[:at].pop 2
-        @document << Zpl2::Position.new(x,y)
+        @document << Zpl2::Position.new(@position.x + x,@position.y + y)
       end
       @document << b.render(text)
     end

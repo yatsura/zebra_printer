@@ -8,7 +8,7 @@ Feature: Data matrix barcode
 
   ECMC Uses data matrix on slides
   
-  Scenario: Data Matrix on EPL
+  Scenario: Data Matrix on EPL2
     Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
@@ -18,8 +18,21 @@ Feature: Data matrix barcode
     """
     When I execute the DSL
     Then the output should include "b1,2,D,c16,r16,"hello""
+
+  Scenario: Data Matrix with offset on EPL2
+    Given a DSL with:
+    """ruby
+    ZebraPrinterDocument.new do
+      language :epl2
+      position(10,10) do
+        barcode :data_matrix, 'hello', :at => [5,5]
+      end
+    end
+    """
+    When I execute the DSL
+    Then the output should include "b15,15,D,c16,r16,"hello""
     
-  Scenario: Data Matrix 128 on ZPL
+  Scenario: Data Matrix on ZPL2
     Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
@@ -32,3 +45,18 @@ Feature: Data matrix barcode
     And the output should include "^FDhello^FS"
     And the output should include "^FO1,2"
     
+
+  Scenario: Data Matrix with offset on ZPL2
+    Given a DSL with:
+    """ruby
+    ZebraPrinterDocument.new do
+      language :zpl2
+      position(10,10) do
+        barcode :data_matrix, 'hello', :at => [5,5]
+      end
+    end
+    """
+    When I execute the DSL
+    Then the output should include "^BXN,1,200,16,16"
+    And the output should include "^FDhello^FS"
+    And the output should include "^FO15,15"

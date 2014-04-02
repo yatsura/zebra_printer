@@ -57,7 +57,7 @@ module Languages
       b = Epl2::BarcodeFactory.create_barcode @font,code,opts
       x, y = 0
       x, y = opts[:at].pop(2) if opts.include?(:at)
-      @document << b.render(x,y,text)
+      @document << b.render(@position.x + x,@position.y + y,text)
     end
 
     def position(x,y,&block)
