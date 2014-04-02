@@ -7,8 +7,7 @@ Feature: Simple ASCII text
   number (not reversed)
 
   Scenario: Basic text only DSL for EPL2
-    Given I have a printer than understands "EPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :epl2
@@ -19,8 +18,7 @@ Feature: Simple ASCII text
     Then the output should include "A1,0,0,2,1,1,N,"""
     
   Scenario: Basic text only DSL for ZPL2
-    Given I have a printer than understands "ZPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :zpl2

@@ -9,8 +9,7 @@ Feature: Data matrix barcode
   ECMC Uses data matrix on slides
   
   Scenario: Data Matrix on EPL
-    Given I have a printer than understands "EPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :epl2
@@ -21,8 +20,7 @@ Feature: Data matrix barcode
     Then the output should include "b1,2,D,c16,r16,"hello""
     
   Scenario: Data Matrix 128 on ZPL
-    Given I have a printer than understands "ZPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :zpl2

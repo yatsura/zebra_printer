@@ -6,8 +6,7 @@ Feature: Position
   position
   
   Scenario: Position block EPL2
-    Given I have a printer than understands "EPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :epl2
@@ -20,8 +19,7 @@ Feature: Position
     Then the output should include "A12,34,0,2,1,1,N,"""
     
   Scenario: Position block ZPL2
-    Given I have a printer than understands "ZPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :zpl2

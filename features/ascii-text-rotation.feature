@@ -5,8 +5,7 @@ Feature: Rotation of ASCII text
   rotation section. The rotation happens clockwise
 
   Scenario: Rotate text 90 degrees for EPL2
-    Given I have a printer than understands "EPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :epl2
@@ -19,8 +18,7 @@ Feature: Rotation of ASCII text
     Then the output should include "A1,0,1,2,1,1,N,"""
 
   Scenario: Rotate text 90 degrees for ZPL2
-    Given I have a printer than understands "ZPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :zpl2
@@ -33,8 +31,7 @@ Feature: Rotation of ASCII text
     Then the output should be like "\^A[A-Z]R,\d+,\d+"
 
   Scenario: Late evaluation of rotated text
-    Given I have a printer than understands "ZPL2"
-    And code:
+    Given code:
     """ruby
     a = ZebraPrinterDocument.new
     a.language :zpl2

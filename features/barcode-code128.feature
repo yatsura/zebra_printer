@@ -10,8 +10,7 @@ Feature: CODE 128 barcode
   within ECMC
 
   Scenario: Code 128 on EPL
-    Given I have a printer than understands "EPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :epl2
@@ -22,8 +21,7 @@ Feature: CODE 128 barcode
     Then the output should include "B1,2,0,1,2,2,50,B,"hello""
     
   Scenario: Code 128 on ZPL
-    Given I have a printer than understands "ZPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :zpl2

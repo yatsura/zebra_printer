@@ -5,8 +5,7 @@ Feature: ASCII Text Size
   means that the size will be approximate
 
   Scenario: Normal Text on EPL2
-    Given I have a printer than understands "EPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :epl2
@@ -18,10 +17,8 @@ Feature: ASCII Text Size
     When I execute the DSL
     Then the output should be like "A\d,\d,\d,2,\d,\d,[A-Z]"
 
-  @pdm
   Scenario: Normal Text on ZPL2
-    Given I have a printer than understands "ZPL2"
-    And a DSL with:
+    Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :zpl2
