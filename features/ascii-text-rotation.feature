@@ -10,12 +10,12 @@ Feature: Rotation of ASCII text
     ZebraPrinterDocument.new do
       language :epl2
       rotate :by_90 do
-        text 1,0,''
+        text ''
       end
     end
     """
     When I execute the DSL
-    Then the output should include "A1,0,1,2,1,1,N,"""
+    Then the output should include "A0,0,1,2,1,1,N,"""
 
   Scenario: Rotate text 90 degrees for ZPL2
     Given a DSL with:
@@ -23,7 +23,7 @@ Feature: Rotation of ASCII text
     ZebraPrinterDocument.new do
       language :zpl2
       rotate :by_90 do
-        text 1,0,''
+        text ''
       end
     end
     """
@@ -37,7 +37,7 @@ Feature: Rotation of ASCII text
     a.language :zpl2
     label = Proc.new do
       rotate :by_90 do
-        text 1,0,''
+        text ''
       end
     end
     a.process(&label)

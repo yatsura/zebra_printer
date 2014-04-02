@@ -19,7 +19,7 @@ module Languages
       def initialize(font, code_type, opts = {})
         @font = font
 
-        @code = BarcodeClasses[:code_type]
+        @code = BarcodeClasses[code_type]
         @human_readable = "Y"
       end
 

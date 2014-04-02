@@ -10,7 +10,7 @@ Feature: ASCII Text Size
     ZebraPrinterDocument.new do
       language :epl2
       font(:size => :normal) do
-        text 1,0,''
+        text ''
       end
     end
     """
@@ -23,7 +23,7 @@ Feature: ASCII Text Size
     ZebraPrinterDocument.new do
       language :zpl2
       font(:size => :normal) do
-        text 1,0,''
+        text ''
       end
     end
     """

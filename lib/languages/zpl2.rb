@@ -10,6 +10,7 @@ module Languages
       @document = Zpl2::Document.new
       @font = Zpl2::Font.new
       @position = Zpl2::Position.new 0,0
+      @document << @position
     end
     
     def text(text,opts={})

@@ -11,21 +11,21 @@ Feature: Simple ASCII text
     """ruby
     ZebraPrinterDocument.new do
       language :epl2
-      text 1,0,''
+      text ''
     end
     """
     When I execute the DSL
-    Then the output should include "A1,0,0,2,1,1,N,"""
+    Then the output should include "A0,0,0,2,1,1,N,"""
     
   Scenario: Basic text only DSL for ZPL2
     Given a DSL with:
     """ruby
     ZebraPrinterDocument.new do
       language :zpl2
-      text 1,0,''
+      text ''
     end
     """
     When I execute the DSL
-    Then the output should include "^FO1,0"
+    Then the output should include "^FO0,0"
     And the output should include "^FD^FS"
     
