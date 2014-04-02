@@ -1,6 +1,10 @@
 = zebra_printer
 
-Description goes here.
+A DSL for zebra printers which handles both EPL2 and ZPL2.
+
+== Documentation
+
+For just now see the cucumber output at: https://www.relishapp.com/yatsura/zebra-printer/docs
 
 == Contributing to zebra_printer
  
