@@ -1,7 +1,7 @@
 class ZebraPrinterDocument
-  def initialize(&block)
+  def initialize(data=nil, &block)
     @language = :epl2
-
+    @data = data
     if block_given?
       instance_eval(&block)
     end
@@ -25,6 +25,10 @@ class ZebraPrinterDocument
     language_processor.document
   end
 
+  def data
+    @data
+  end
+  
   def method_missing(method,*args,&block)
     if language_processor.respond_to? method
       if block_given?

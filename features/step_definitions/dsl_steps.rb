@@ -1,3 +1,9 @@
+require 'ostruct'
+
+Given(/^some array data$/) do
+  @data = [OpenStruct.new(:text => 'First Data', :barcode => '111111'),OpenStruct.new(:text => 'Last Data', :barcode => '999999')]
+end
+
 Given(/^a DSL with:$/) do |string|
   @dsl = string
 end
