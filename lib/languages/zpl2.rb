@@ -56,8 +56,11 @@ module Languages
 
     def position(x,y,&block)
       if block_given?
-        @document << Zpl2::Position.new(x,y)
-        self.instance_eval(&block)        
+        save = @position
+        @position = Zpl2::Position.new(x,y)
+        @document << @position
+        self.instance_eval(&block)
+        @position = save
       else
         @position = Zpl2::Position.new(x,y)
       end

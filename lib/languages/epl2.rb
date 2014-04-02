@@ -20,7 +20,12 @@ module Languages
     end
 
     def text(text,opts={})
-      @document << Epl2::Text.new(@font).render(@position.x,@position.y,text)
+      if opts.include? :at
+        x,y = opts[:at][0], opts[:at][1]
+      else
+        x,y = 0,0
+      end
+      @document << Epl2::Text.new(@font).render(@position.x + x,@position.y + y,text)
     end
 
     def rotate(amount,&block)
