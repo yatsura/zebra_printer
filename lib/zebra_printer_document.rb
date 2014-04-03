@@ -40,4 +40,8 @@ class ZebraPrinterDocument
       super(method,*args,&block)
     end
   end
+
+  def respond_to?(method)
+    language_processor.respond_to?(method) || super(method)
+  end
 end
