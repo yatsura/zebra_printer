@@ -14,7 +14,8 @@ module Languages
 
     class Barcode1D
       BarcodeClasses = {
-                        code_128: "BC"
+                        code_128: "BC",
+                        ean13: "BE"
                        }
       def initialize(font, code_type, opts = {})
         @font = font
