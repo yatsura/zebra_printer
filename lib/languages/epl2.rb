@@ -1,4 +1,3 @@
-require 'pry'
 require_relative 'epl2/font'
 require_relative 'epl2/document'
 require_relative 'epl2/text'
