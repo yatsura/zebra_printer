@@ -1,3 +1,4 @@
+require 'pry'
 require_relative 'epl2/font'
 require_relative 'epl2/document'
 require_relative 'epl2/text'
@@ -19,13 +20,13 @@ module Languages
       @document.render
     end
 
-    def text(text,opts={})
+    def text(value,opts={})
       if opts.include? :at
         x,y = opts[:at][0], opts[:at][1]
       else
         x,y = 0,0
       end
-      @document << Epl2::Text.new(:font => @font, :x => (@position.x +x), :y => (@position.y + y),:text => text)
+      @document << Epl2::Text.new(:font => @font, :x => (@position.x+x), :y => (@position.y+y),:text => value)
     end
 
     def rotate(amount,&block)
