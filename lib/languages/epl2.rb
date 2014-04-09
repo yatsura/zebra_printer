@@ -25,7 +25,7 @@ module Languages
       else
         x,y = 0,0
       end
-      @document << Epl2::Text.new(@font).render(@position.x + x,@position.y + y,text)
+      @document << Epl2::Text.new(:font => @font, :x => (@position.x +x), :y => (@position.y + y),:text => text)
     end
 
     def rotate(amount,&block)
