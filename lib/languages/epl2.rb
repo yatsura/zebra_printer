@@ -21,7 +21,7 @@ module Languages
 
     def text(value,opts={})
       if opts.include? :at
-        opts[:at] = (@position + Epl2::Position.elements(opts[:at])).to_a
+        opts[:at] = (@position + Epl2::Position.from_array(opts[:at])).to_a
       else
         opts[:at] = @position.to_a
       end
@@ -57,7 +57,7 @@ module Languages
       
       opts = opts.merge({:font => font,:text =>text})
       if opts.include? :at
-        opts[:at] = (@position + Epl2::Position.elements(opts[:at])).to_a
+        opts[:at] = (@position + Epl2::Position.from_array(opts[:at])).to_a
       end
       
       b = Epl2::BarcodeFactory.create_barcode code,opts
