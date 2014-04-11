@@ -9,13 +9,13 @@ module Languages
     def initialize
       @document = Zpl2::Document.new
       @font = Zpl2::Font.new
-      @position = Zpl2::Position.new 0,0
+      @position = Zpl2::Position[0,0]
       @document << @position
     end
     
     def text(text,opts={})
       if opts.include? :at
-        @document << Zpl2::Position.new(@position.x + opts[:at][0], @position.y + opts[:at][1])
+        @document << (@position + Zpl2::Position.from_array(opts[:at]))
       end
       @document << Zpl2::Text.new(text)
       @document << @position if opts.include?(:at)
@@ -50,8 +50,7 @@ module Languages
       opts = opts.merge({:font => @font,:text => text})
 
       if opts.include? :at
-        x,y = opts[:at].pop 2
-        @document << Zpl2::Position.new(@position.x + x,@position.y + y)
+        @document << (@position + Zpl2::Position.from_array(opts[:at]))
       end
 
       @document << Zpl2::BarcodeFactory.create_barcode(code, opts)
@@ -60,12 +59,12 @@ module Languages
     def position(x,y,&block)
       if block_given?
         save = @position
-        @position = Zpl2::Position.new(x,y)
+        @position = Zpl2::Position[x,y]
         @document << @position
         self.instance_eval(&block)
         @position = save
       else
-        @position = Zpl2::Position.new(x,y)
+        @position = Zpl2::Position[x,y]
       end
       @document << @position
     end

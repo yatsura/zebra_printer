@@ -1,17 +1,38 @@
-require 'matrix'
-
 module Languages
   class Zpl2
-    class Position < Vector
-      def x
-        self[0]
+    class Position
+      attr_accessor :x, :y
+      
+      def self.[](x,y)
+          new x,y
       end
 
-      def y
-        self[1]
+      def self.from_array(ary)
+        x, y = ary.pop(2)
+        new x,y
       end
+      
       def render
         "^FO#{x},#{y}"
+      end
+
+      def +(v)
+        case v
+        when Position
+          self.class[x+v.x,y+v.y]
+        end
+      end
+
+      def ==(v)
+        (x==v.x) && (y==v.y)
+      end
+      
+      def to_a
+        [x,y]
+      end
+      private
+      def initialize(x,y)
+        @x, @y = x,y
       end
     end
   end
