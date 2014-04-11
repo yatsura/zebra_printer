@@ -1,15 +1,20 @@
+require 'matrix'
+
 module Languages
   class Epl2
-    class Position
-      attr_reader :x, :y
-      def initialize(x,y)
-        @x = x
-        @y = y
-      end
-    end
+    class Position < Vector
 
-    def render
-      ""
+      def x
+        self[0]
+      end
+
+      def y
+        self[1]
+      end
+      
+      def render
+        ""
+      end
     end
   end
 end

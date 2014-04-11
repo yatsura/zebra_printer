@@ -12,7 +12,7 @@ module Languages
       @document = Epl2::Document.new
       #defaults
       @font = Epl2::Font.new
-      @position = Epl2::Position.new(0,0)
+      @position = Epl2::Position[0,0]
     end
 
     def document
@@ -21,11 +21,11 @@ module Languages
 
     def text(value,opts={})
       if opts.include? :at
-        x,y = opts[:at][0], opts[:at][1]
+        opts[:at] = (@position + Epl2::Position.elements(opts[:at])).to_a
       else
-        x,y = 0,0
+        opts[:at] = @position.to_a
       end
-      @document << Epl2::Text.new(:font => @font, :x => (@position.x+x), :y => (@position.y+y),:text => value)
+      @document << Epl2::Text.new(:font => @font, :at => opts[:at], :text => value)
     end
 
     def rotate(amount,&block)
@@ -54,20 +54,24 @@ module Languages
     def barcode(*args)
       opts = args.extract_options!
       code,text = args.pop 2
-      b = Epl2::BarcodeFactory.create_barcode @font,code,opts
-      x, y = 0
-      x, y = opts[:at].pop(2) if opts.include?(:at)
-      @document << b.render(@position.x + x,@position.y + y,text)
+      
+      opts = opts.merge({:font => font,:text =>text})
+      if opts.include? :at
+        opts[:at] = (@position + Epl2::Position.elements(opts[:at])).to_a
+      end
+      
+      b = Epl2::BarcodeFactory.create_barcode code,opts
+      @document << b.render
     end
 
     def position(x,y,&block)
       if block_given?
         save = @position
-        @position = Epl2::Position.new x,y
+        @position = Epl2::Position[x,y]
         self.instance_eval(&block)
         @position = save
       else
-        @position = Epl2::Position.new x,y
+        @position = Epl2::Position[x,y]
       end
     end
   end

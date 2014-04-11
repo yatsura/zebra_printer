@@ -20,8 +20,8 @@ module Languages
         @font = opts[:font] || Font.new
         #defaults
         @type,@nb_width,@wb_width,@height,@human_readable = BarcodeClasses[code_type]
-        @x = (opts[:position] || [0,0])[0]
-        @y = (opts[:position] || [0,0])[1]
+        opts[:at] = [0,0] unless opts.has_key? :at
+        @x, @y = opts[:at].pop(2)
         @text = opts[:text] || ""
       end
 
@@ -37,8 +37,8 @@ module Languages
       def initialize(code_type, opts = {})
         @font = opts[:font] || Font.new
         @type,@columns_encode,@rows_encode = BarcodeClasses[code_type]
-        @x = (opts[:position] || [0,0])[0]
-        @y = (opts[:position] || [0,0])[1]
+        @x = (opts[:at] || [0,0])[0]
+        @y = (opts[:at] || [0,0])[1]
         @text = opts[:text] || ""        
       end
 
