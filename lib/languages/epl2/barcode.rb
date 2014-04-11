@@ -1,11 +1,11 @@
 module Languages
   class Epl2
     class BarcodeFactory
-      def self.create_barcode(font, code_type, opts = {})
+      def self.create_barcode(code_type, opts = {})
         if Barcode1D::BarcodeClasses.keys.include? code_type
-          Barcode1D.new font,code_type,opts
+          Barcode1D.new code_type, opts
         elsif Barcode2D::BarcodeClasses.keys.include? code_type
-          Barcode2D.new font,code_type,opts
+          Barcode2D.new code_type, opts
         else
           raise ArgumentException.new("Unknown barcode: #{code_type}")
         end
