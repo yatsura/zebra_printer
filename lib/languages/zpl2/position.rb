@@ -1,14 +1,17 @@
+require 'matrix'
+
 module Languages
   class Zpl2
-    class Position
-      attr_reader :x, :y
-      
-      def initialize(x,y)
-        @x, @y = x,y
+    class Position < Vector
+      def x
+        self[0]
       end
 
+      def y
+        self[1]
+      end
       def render
-        "^FO#{@x},#{@y}"
+        "^FO#{x},#{y}"
       end
     end
   end
