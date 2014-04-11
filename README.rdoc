@@ -1,6 +1,6 @@
 {<img src="https://travis-ci.org/yatsura/zebra_printer.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/yatsura/zebra_printer]
 {<img src="https://codeclimate.com/github/yatsura/zebra_printer.png" />}[https://codeclimate.com/github/yatsura/zebra_printer]
-
+{<img src="https://codeclimate.com/github/yatsura/zebra_printer/coverage.png" />}[https://codeclimate.com/github/yatsura/zebra_printer]
 = zebra_printer
 
 A DSL for zebra printers which handles both EPL2 and ZPL2.
