@@ -17,15 +17,15 @@ module Languages
                         code_128: "BC",
                         ean13: "BE"
                        }
-      def initialize(font, code_type, opts = {})
-        @font = font
-
+      def initialize(code_type, opts = {})
         @code = BarcodeClasses[code_type]
-        @human_readable = "Y"
+        @font = opts[:font] || Font.new
+        @human_readable = opts[:human_readable] || "Y"
+        @text = opts[:text] || ""
       end
 
-      def render(text)
-        "^#{@code}#{@font.rotation},#{@font.height*2},#{@human_readable},N,N^FD#{text}^FS"
+      def render
+        "^#{@code}#{@font.rotation},#{@font.height*2},#{@human_readable},N,N^FD#{@text}^FS"
       end
     end
 
@@ -34,13 +34,14 @@ module Languages
                         data_matrix: ["X",4,16,16]
                        }
 
-      def initialize(font, code_type, opts = {})
-        @font = font
+      def initialize(code_type, opts = {})
+        @font = opts[:font] || Font.new
         @code, @symbol_height, @columns_encode, @rows_encode = BarcodeClasses[code_type]
+        @text = opts[:text] || ""
       end
       
-      def render(text)
-        "^B#{@code}#{@font.rotation},#{@symbol_height},200,#{@columns_encode},#{@rows_encode}^FD#{text}^FS"
+      def render
+        "^B#{@code}#{@font.rotation},#{@symbol_height},200,#{@columns_encode},#{@rows_encode}^FD#{@text}^FS"
       end
     end
   end

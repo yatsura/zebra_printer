@@ -16,14 +16,17 @@ module Languages
                         code_128: ["1",2,2,50,"B"],
                         ean13: ["E30",2,2,50,"B"]
                        }
-      def initialize(font, code_type, opts = {})
-        @font = font
+      def initialize(code_type, opts = {})
+        @font = opts[:font] || Font.new
         #defaults
         @type,@nb_width,@wb_width,@height,@human_readable = BarcodeClasses[code_type]
+        @x = (opts[:position] || [0,0])[0]
+        @y = (opts[:position] || [0,0])[1]
+        @text = opts[:text] || ""
       end
 
-      def render(x,y,value)
-        "B#{x},#{y},#{@font.rotation},#{@type},#{@nb_width},#{@wb_width},#{@height},#{@human_readable},\"#{value}\""
+      def render
+        "B#{@x},#{@y},#{@font.rotation},#{@type},#{@nb_width},#{@wb_width},#{@height},#{@human_readable},\"#{@text}\""
       end
     end
     
@@ -31,13 +34,16 @@ module Languages
       BarcodeClasses = {
                         data_matrix: ["D",16,16]
                        }
-      def initialize(font, code_type, opts = {})
-        @font = font
+      def initialize(code_type, opts = {})
+        @font = opts[:font] || Font.new
         @type,@columns_encode,@rows_encode = BarcodeClasses[code_type]
+        @x = (opts[:position] || [0,0])[0]
+        @y = (opts[:position] || [0,0])[1]
+        @text = opts[:text] || ""        
       end
 
-      def render(x,y,value)
-        "b#{x},#{y},#{@type},c#{@columns_encode},r#{@rows_encode},\"#{value}\""
+      def render
+        "b#{@x},#{@y},#{@type},c#{@columns_encode},r#{@rows_encode},\"#{@text}\""
       end
     end
   end
