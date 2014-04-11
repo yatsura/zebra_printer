@@ -7,5 +7,9 @@ module Languages
         @y = y
       end
     end
+
+    def render
+      ""
+    end
   end
 end
