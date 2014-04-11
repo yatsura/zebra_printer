@@ -13,3 +13,5 @@ group :development do
   gem "simplecov", ">= 0"
   gem "cucumber"
 end
+
+gem "codeclimate-test-reporter", group: :test, require: nil
