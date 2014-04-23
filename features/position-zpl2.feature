@@ -33,4 +33,32 @@ Feature: Position
     Then the output should include "^FO22,44"
     And the output should include "^FD^FS"
 
+    Scenario: Position block in mm
+      Given a DSL with:
+      """ruby
+      ZebraPrinterDocument.new do
+        language :zpl2
+        position(12.mm,34.mm) do
+          text ''
+        end
+      end
+      """
+    When I execute the DSL
+    Then the output should include "^FO96,272"  
+    And the output should include "^FD^FS"
+
+    Scenario: Move text relative to position in mm
+      Given a DSL with:
+      """ruby
+      ZebraPrinterDocument.new do
+        language :zpl2
+        position(6.mm,17.mm) do
+          text '', :at => [6.mm,17.mm]
+        end
+      end
+      """
+    When I execute the DSL
+    Then the output should include "^FO96,272"        
+    And the output should include "^FD^FS"
+
     

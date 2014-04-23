@@ -4,7 +4,7 @@ module Languages
       include Languages::Generic::Position
       
       def render
-        "^FO#{x},#{y}"
+        "^FO#{x.to_dots},#{y.to_dots}"
       end
     end
   end

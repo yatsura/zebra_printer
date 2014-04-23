@@ -1,5 +1,3 @@
-require 'matrix'
-
 module Languages
   class Epl2
     class Position

@@ -36,11 +36,24 @@ Feature: Position in EPL2
       """ruby
       ZebraPrinterDocument.new do
         language :epl2
-        position(12.mm,34.m)m do
+        position(12.mm,34.mm) do
           text ''
         end
       end
       """
     When I execute the DSL
     Then the output should include "A96,272,0,2,1,1,N,"""
-      
+
+    Scenario: Move text relative to position in mm
+      Given a DSL with:
+      """ruby
+      ZebraPrinterDocument.new do
+        language :epl2
+        position(6.mm,17.mm) do
+          text '', :at => [6.mm,17.mm]
+        end
+      end
+      """
+    When I execute the DSL
+    Then the output should include "A96,272,0,2,1,1,N,"""
+
