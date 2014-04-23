@@ -19,7 +19,18 @@ Feature: CODE 128 barcode
     """
     When I execute the DSL
     Then the output should include "B1,2,0,1,2,2,50,B,"hello""
-    
+
+  Scenario: Code 128 on EPL with millimetres
+    Given a DSL with:
+    """ruby
+    ZebraPrinterDocument.new do
+      language :epl2
+      barcode :code_128, 'hello', :at => [1.mm,2.mm]
+    end
+    """
+    When I execute the DSL
+    Then the output should include "B8,16,0,1,2,2,50,B,"hello""
+
   Scenario: Code 128 on ZPL
     Given a DSL with:
     """ruby
@@ -28,8 +39,21 @@ Feature: CODE 128 barcode
       barcode :code_128, 'hello', :at => [1,2]
     end
     """
+    When I execute the DSL 
+    Then the output should include "^BCN,30,Y,N,N"
+    And the output should include "^FO1,2"
+    And the output should include "^FDhello^FS"
+
+  Scenario: Code 128 on ZPL
+    Given a DSL with:
+    """ruby
+    ZebraPrinterDocument.new do
+      language :zpl2
+      barcode :code_128, 'hello', :at => [1.mm,2.mm]
+    end
+    """
     When I execute the DSL
     Then the output should include "^BCN,30,Y,N,N"
+    And the output should include "^FO8,16"
     And the output should include "^FDhello^FS"
-    
-    
+

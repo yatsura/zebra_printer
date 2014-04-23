@@ -5,8 +5,9 @@ module Languages
       
       def initialize(opts = {})
         # FIXME
+        @position = Languages::Epl2::Position[0,0]
         @font = opts[:font] || Epl2::Font.new
-        @position = (Languages::Epl2::Position.from_array(opts[:at]) || Languages::Epl2::Position[0,0])
+        @position = Languages::Epl2::Position.from_array(opts[:at]) if opts.has_key?(:at)
         @text = ""
       end
       
