@@ -41,7 +41,7 @@ Feature: ASCII Text Size
     end
     """
     When I execute the DSL
-    Then the output should be like "\^CF[A-Z0-9],\d+,\d+"
+    Then the output should be like "\^A[A-Z0-9],N,\d+,\d+"
 
   Scenario: Array as size
     Given a DSL with:
@@ -54,5 +54,5 @@ Feature: ASCII Text Size
     end
     """
     When I execute the DSL
-    Then the output should be like "\^CF0,160,160"
+    Then the output should be like "\^A0,N,160,160"
 

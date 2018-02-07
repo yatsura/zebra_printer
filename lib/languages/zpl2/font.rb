@@ -34,7 +34,7 @@ module Languages
                           end
       end
       def render
-        "^FW#{@rotation}^CF#{@name},#{@height},#{@width}\n"
+        "^A#{@name},#{@rotation},#{@height},#{@width}\n"
       end
 
       private

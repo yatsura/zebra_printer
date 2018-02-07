@@ -26,9 +26,11 @@ module Languages
 
     def rotate(amount, &block)
       if block_given?
-        @document << @merge_font.add({:rotation => amount})
+        @font = @merge_font.add({:rotation => amount})
+        @document << @font
         self.instance_eval &block
-        @document << @merge_font.remove
+        @font = @merge_font.remove
+        @document << @font
       else
         @font.font_rotation amount
         @document << @font
@@ -37,9 +39,11 @@ module Languages
 
     def font(opts={},&block)
       if block_given?
-        @document << @merge_font.add(opts)
+        @font = @merge_font.add(opts)
+        @document << @font
         self.instance_eval &block
-        @document << @merge_font.remove
+        @font = @merge_font.remove
+        @document << @font
       else
         @font = Zpl2::Font.new(opts)
         @document << @font

@@ -28,7 +28,7 @@ Feature: Rotation of ASCII text
     end
     """
     When I execute the DSL
-    Then the output should include "FWR"
+    Then the output should be like "A[A-Z0-9],R"
 
   Scenario: Late evaluation of rotated text
     Given code:
@@ -44,5 +44,5 @@ Feature: Rotation of ASCII text
     a.document
     """
     When I execute the code
-    Then the output should include "FWR"
+    Then the output should be like "A[A-Z0-9],R"
 
