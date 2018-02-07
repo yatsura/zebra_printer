@@ -18,18 +18,7 @@ module Languages
       end
 
       def font_size(val)
-        case val
-        when :normal
-          ["0",25,25]
-        when :small
-          ["0",20,20]
-        when :large
-          ["0",40,40]
-        when :x_large
-          ["0",60,60]
-        else
-          ["0",25,25]
-        end
+        val.is_a?(Array) ? val : name_size(val)
       end
 
       def font_rotation(amount)
@@ -46,6 +35,22 @@ module Languages
       end
       def render
         "^FW#{@rotation}^CF#{@name},#{@height},#{@width}\n"
+      end
+
+      private
+      def name_size(val)
+        case val
+        when :normal
+          ["0",25,25]
+        when :small
+          ["0",20,20]
+        when :large
+          ["0",40,40]
+        when :x_large
+          ["0",60,60]
+        else
+          ["0",25,25]
+        end
       end
     end
   end

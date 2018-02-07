@@ -6,28 +6,36 @@ describe Languages::Zpl2::Font do
     its(:name) { should eq "0" }
     its(:rotation) { should eq "N" }
     its(:height) { should eq 25 }
-    its(:width) { should eq 25 }    
+    its(:width) { should eq 25 }
   end
   context "#font_size :small" do
     subject { Languages::Zpl2::Font.new :size => :small}
     its(:name) { should eq "0" }
     its(:rotation) { should eq "N" }
     its(:height) { should eq 20 }
-    its(:width) { should eq 20 }    
+    its(:width) { should eq 20 }
   end
   context "#font_size :large" do
     subject { Languages::Zpl2::Font.new :size => :large}
     its(:name) { should eq "0" }
     its(:rotation) { should eq "N" }
     its(:height) { should eq 40 }
-    its(:width) { should eq 40 }    
+    its(:width) { should eq 40 }
   end
   context "#font_size :x_large" do
     subject { Languages::Zpl2::Font.new :size => :x_large}
     its(:name) { should eq "0" }
     its(:rotation) { should eq "N" }
     its(:height) { should eq 60 }
-    its(:width) { should eq 60 }    
+    its(:width) { should eq 60 }
+  end
+
+  context "#font_size [0,160,160]" do
+    subject { Languages::Zpl2::Font.new :size => ["0",160,160]}
+    its(:name) { should eq "0" }
+    its(:rotation) { should eq "N" }
+    its(:height) { should eq 160 }
+    its(:width) { should eq 160 }
   end
 
   context "#font_rotation" do

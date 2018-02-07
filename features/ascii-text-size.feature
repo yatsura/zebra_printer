@@ -42,3 +42,17 @@ Feature: ASCII Text Size
     """
     When I execute the DSL
     Then the output should be like "\^CF[A-Z0-9],\d+,\d+"
+
+  Scenario: Array as size
+    Given a DSL with:
+    """ruby
+    ZebraPrinterDocument.new do
+      language :zpl2
+      font(:size => [0,160,160]) do
+        text ''
+      end
+    end
+    """
+    When I execute the DSL
+    Then the output should be like "\^CF0,160,160"
+
