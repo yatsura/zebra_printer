@@ -41,4 +41,4 @@ Feature: ASCII Text Size
     end
     """
     When I execute the DSL
-    Then the output should be like "\^CF0N"
+    Then the output should be like "\^CF[A-Z0-9],\d+,\d+"

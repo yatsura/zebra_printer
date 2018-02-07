@@ -2,7 +2,7 @@ module Languages
   class Zpl2
     class Font
       attr_reader :name, :rotation, :height, :width
-      
+
       def initialize(opts = {})
         # defaults
         @name     = opts[:name] || "B"
@@ -42,10 +42,10 @@ module Languages
                             "B"
                           else
                             "N"
-                          end        
+                          end
       end
       def render
-        "^CF#{@name}#{@rotation},#{@height},#{@width}\n"
+        "^FW#{@rotation}^CF#{@name},#{@height},#{@width}\n"
       end
     end
   end
