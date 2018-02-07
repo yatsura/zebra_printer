@@ -52,15 +52,15 @@ module Languages
       def name_size(val)
         case val
         when :normal
-          ["0",25,25]
+          [self.name,25,25]
         when :small
-          ["0",20,20]
+          [self.name,20,20]
         when :large
-          ["0",40,40]
+          [self.name,40,40]
         when :x_large
-          ["0",60,60]
+          [self.name,60,60]
         else
-          ["0",25,25]
+          [self.name,25,25]
         end
       end
     end
