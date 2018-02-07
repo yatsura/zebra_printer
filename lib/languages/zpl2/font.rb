@@ -5,7 +5,7 @@ module Languages
 
       def initialize(opts = {})
         # defaults
-        @name     = opts[:name] || "B"
+        @name     = opts[:name] || "0"
         @rotation = opts.include?(:rotation) ? font_rotation(opts[:rotation]) : font_rotation(:by_0)
         @height   = opts[:height] || 15
         @width    = opts[:width] || 12
