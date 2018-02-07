@@ -7,6 +7,7 @@ module Languages
 
       def add(opts)
         font = Zpl2::Font.new(merge(opts))
+        font.block!
         @font_opts.push(opts)
         font
       end

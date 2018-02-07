@@ -33,11 +33,22 @@ module Languages
                             "N"
                           end
       end
+      def block!
+        @is_block = true
+      end
+
       def render
-        "^A#{@name},#{@rotation},#{@height},#{@width}\n"
+        "^A#{@name},#{@rotation},#{@height},#{@width}\n#{set_default}"
       end
 
       private
+      def set_default
+        if @is_block
+          "^FW#{@rotation}^CF#{@name},#{@height},#{@width}\n"
+        else
+          ""
+        end
+      end
       def name_size(val)
         case val
         when :normal
