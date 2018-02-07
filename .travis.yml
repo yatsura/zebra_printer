@@ -1,6 +1,5 @@
 language: ruby
 rvm:
-  - "1.9.3"
-  - jruby-19mode # JRuby in 1.9 mode
+  - "2.3.6"
 env:
   - CODECLIMATE_REPO_TOKEN=07fea6737a63337c1660478cbea662db2d022e156f5889a75a63c230448e567f
