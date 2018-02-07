@@ -50,3 +50,8 @@ pkg
 .rvmrc
 .ruby-gemset
 .ruby-version
+.vagrant
+Vagrant*
+Berksfile*
+nodes
+ubuntu*.log
