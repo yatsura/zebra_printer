@@ -1,5 +1,4 @@
 language: ruby
-rvm:
-  - "2.3.6"
 env:
   - CODECLIMATE_REPO_TOKEN=07fea6737a63337c1660478cbea662db2d022e156f5889a75a63c230448e567f
+script: bundle exec rspec && bundle exec cucumber
