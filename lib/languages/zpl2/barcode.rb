@@ -22,10 +22,11 @@ module Languages
         @font = opts[:font] || Font.new
         @human_readable = opts[:human_readable] || "Y"
         @text = opts[:text] || ""
+        @height = opts[:height] || @font.height*2
       end
 
       def render
-        "^#{@code}#{@font.rotation},#{@font.height*2},#{@human_readable},N,N^FD#{@text}^FS"
+        "^#{@code}#{@font.rotation},#{@height},#{@human_readable},N,N^FD#{@text}^FS"
       end
     end
 
@@ -39,7 +40,7 @@ module Languages
         @code, @symbol_height, @columns_encode, @rows_encode = BarcodeClasses[code_type]
         @text = opts[:text] || ""
       end
-      
+
       def render
         "^B#{@code}#{@font.rotation},#{@symbol_height},200,#{@columns_encode},#{@rows_encode}^FD#{@text}^FS"
       end
