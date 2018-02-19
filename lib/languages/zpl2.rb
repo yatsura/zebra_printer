@@ -4,6 +4,7 @@ require_relative 'zpl2/text'
 require_relative 'zpl2/position'
 require_relative 'zpl2/barcode'
 require_relative 'zpl2/merge_font'
+require_relative 'zpl2/speed'
 
 module Languages
   class Zpl2
@@ -74,6 +75,10 @@ module Languages
         @position = Zpl2::Position[x,y]
       end
       @document << @position
+    end
+
+    def speed(amount)
+      @document << Zpl2::Speed.new(amount)
     end
 
     def document
