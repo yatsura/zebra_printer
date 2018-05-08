@@ -10,7 +10,7 @@ group :development do
   gem 'rspec-its'
   gem "rdoc", "~> 6.0.1"
   gem "bundler", "~> 1.6"
-  gem "jeweler", "~> 2.3.9"
+  gem "juwelier"
   gem "simplecov", "~> 0.15.1"
   gem "cucumber"
 end
