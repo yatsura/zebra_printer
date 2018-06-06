@@ -5,7 +5,7 @@ describe ZebraPrinterDocument do
     before :each do
       subject.language :epl2
     end
-    
+
     it "language_processor is correct" do
       expect(subject.language_processor).to be_a Languages::Epl2
     end
@@ -24,7 +24,7 @@ describe ZebraPrinterDocument do
     before :each do
       subject.language :zpl2
     end
-    
+
     it "language_processor is correct" do
       expect(subject.language_processor).to be_a Languages::Zpl2
     end
@@ -35,6 +35,17 @@ describe ZebraPrinterDocument do
           expect(subject).to respond_to method
         end
       end
+    end
+  end
+
+  context "with data" do
+    before :each do
+      data = { :data_item_1 => 'data_item_1_value' }
+      subject = ZebraPrinterDocument.new data
+    end
+
+    it "allows the data access as data" do
+      expect(subject).to respond_to :data
     end
   end
 end
