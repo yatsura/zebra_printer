@@ -8,7 +8,8 @@ require_relative 'zpl2/speed'
 
 module Languages
   class Zpl2
-    def initialize
+    def initialize(data=nil)
+      @data = data
       @document = Zpl2::Document.new
       @font = Zpl2::Font.new
       @merge_font = MergeFont.new
@@ -79,6 +80,10 @@ module Languages
 
     def speed(amount)
       @document << Zpl2::Speed.new(amount)
+    end
+
+    def data
+      @data
     end
 
     def document

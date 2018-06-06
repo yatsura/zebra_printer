@@ -13,14 +13,14 @@ class ZebraPrinterDocument
   end
 
   def language_processor
-    @language_processor ||= Languages.const_get(@language.to_s.capitalize).new
+    @language_processor ||= Languages.const_get(@language.to_s.capitalize).new data
   end
 
   def process(&block)
     instance_eval(&block)
     self
   end
-  
+
   def document
     language_processor.document
   end
@@ -28,7 +28,7 @@ class ZebraPrinterDocument
   def data
     @data
   end
-  
+
   def method_missing(method,*args,&block)
     if language_processor.respond_to? method
       if block_given?

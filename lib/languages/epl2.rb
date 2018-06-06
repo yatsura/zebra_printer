@@ -8,7 +8,8 @@ require_relative '../utils/array'
 
 module Languages
   class Epl2
-    def initialize
+    def initialize(data=nil)
+      @data = data
       @document = Epl2::Document.new
       #defaults
       @font = Epl2::Font.new
@@ -54,12 +55,12 @@ module Languages
     def barcode(*args)
       opts = args.extract_options!
       code,text = args.pop 2
-      
+
       opts = opts.merge({:font => font,:text =>text})
       if opts.include? :at
         opts[:at] = (@position + Epl2::Position.from_array(opts[:at])).to_a
       end
-      
+
       b = Epl2::BarcodeFactory.create_barcode code,opts
       @document << b.render
     end
@@ -73,6 +74,10 @@ module Languages
       else
         @position = Epl2::Position[x,y]
       end
+    end
+
+    def data
+      @data
     end
   end
 end
