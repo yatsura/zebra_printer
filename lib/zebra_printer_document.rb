@@ -29,6 +29,10 @@ class ZebraPrinterDocument
     @data
   end
 
+  def to_s
+    document
+  end
+
   def to_str
     document
   end

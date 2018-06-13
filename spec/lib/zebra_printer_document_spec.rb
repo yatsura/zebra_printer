@@ -49,10 +49,14 @@ describe ZebraPrinterDocument do
     end
   end
 
-  context "string co"
+  context "string coercion" do
+    before :each do
+      subject.language :zpl2
+      subject.text 'hello world'
+    end
+
     it "can be a string" do
       expect(subject.to_str).to include("^FDhello world^FS")
->>>>>>> Stashed changes
     end
   end
 end
