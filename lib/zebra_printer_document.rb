@@ -29,6 +29,10 @@ class ZebraPrinterDocument
     @data
   end
 
+  def to_str
+    document
+  end
+
   def method_missing(method,*args,&block)
     if language_processor.respond_to? method
       if block_given?

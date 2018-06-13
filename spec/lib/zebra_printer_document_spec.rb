@@ -48,4 +48,11 @@ describe ZebraPrinterDocument do
       expect(subject).to respond_to :data
     end
   end
+
+  context "string co"
+    it "can be a string" do
+      expect(subject.to_str).to include("^FDhello world^FS")
+>>>>>>> Stashed changes
+    end
+  end
 end
