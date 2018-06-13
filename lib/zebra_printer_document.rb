@@ -49,7 +49,7 @@ class ZebraPrinterDocument
     end
   end
 
-  def respond_to?(method)
-    language_processor.respond_to?(method) || super(method)
+  def respond_to_missing?(method,include_all)
+    language_processor.respond_to?(method) || super(method,include_all)
   end
 end
