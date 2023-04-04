@@ -8,11 +8,11 @@ source "https://rubygems.org"
 group :development do
   gem "rspec", "~> 3.7.0"
   gem 'rspec-its'
-  gem "rdoc", "~> 6.0.1"
+  gem "rdoc", "~> 6.3.1"
   gem "bundler", "~> 1.6"
   gem "juwelier"
   gem "simplecov", "~> 0.15.1"
-  gem "cucumber"
+  gem "cucumber", ">= 4.0.0"
 end
 
 gem "codeclimate-test-reporter", group: :test, require: nil
